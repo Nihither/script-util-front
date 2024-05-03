@@ -19,7 +19,7 @@ export async function getPassById(passId) {
 }
 
 export async function searchPass(searchString) {
-  const url = new URL(`${config.API_HOST}/passwords`)
+  const url = new URL(`${config.API_HOST}/passwords?`)
   const params = new URLSearchParams({
     'searchString': searchString,
   });
@@ -31,9 +31,9 @@ export async function searchPass(searchString) {
     },
   })
 
-  if (response.ok) {
-    return(response.json)
+  if (response.status === 200) {
+    return(response.json())
   } else {
-    return(response.status + response.statusText)
+    console.log(response.status + response.statusText);
   }
 }

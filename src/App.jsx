@@ -2,7 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
-import PassMenu, {loader as passMenuLoader} from "./routes/passwords/PassMenu";
+import PassMenu from "./routes/passwords/PassMenu";
+import PassList, {loader as passListLoader} from "./routes/passwords/PassList";
 import CreatePass from "./routes/passwords/CreatePass";
 import UpdatePass, {loader as updatePassLoader} from "./routes/passwords/UpdatePass";
 import CertMenu from "./routes/certs/CertMenu";
@@ -19,8 +20,12 @@ export default function App() {
         {
           path: "passwords",
           element: <PassMenu />,
-          loader: passMenuLoader,
           children: [
+            {
+              path: "list",
+              element: <PassList />,
+              loader: passListLoader,
+            },
             {
               path: "add",
               element: <CreatePass />,
