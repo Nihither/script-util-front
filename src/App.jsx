@@ -4,7 +4,7 @@ import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import PassMenu from "./routes/passwords/PassMenu";
 import PassList, {loader as passListLoader} from "./routes/passwords/PassList";
-import CreatePass from "./routes/passwords/CreatePass";
+import CreatePass, {action as createPassAction} from "./routes/passwords/CreatePass";
 import UpdatePass, {loader as updatePassLoader} from "./routes/passwords/UpdatePass";
 import CertMenu from "./routes/certs/CertMenu";
 
@@ -29,6 +29,7 @@ export default function App() {
             {
               path: "add",
               element: <CreatePass />,
+              action: createPassAction,
             },
             {
               path: ":passId/edit",
@@ -49,5 +50,4 @@ export default function App() {
   return(
     <RouterProvider router={router} />
   )
-
 }

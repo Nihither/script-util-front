@@ -32,6 +32,7 @@ export default function PassForm(props) {
           type="text"
           aria-label="Username"
           placeholder="Username"
+          required={true}
           name="username"
           defaultValue={password?.username}
         />
@@ -42,6 +43,7 @@ export default function PassForm(props) {
           type="text"
           aria-label="Password"
           placeholder="Password"
+          required={true}
           name="password"
           defaultValue={password?.password}
         />
@@ -49,7 +51,7 @@ export default function PassForm(props) {
       <label>
         <span>URL</span>
         <input
-          type="url"
+          type="text"
           aria-label="URL"
           placeholder="URL"
           name="url"
