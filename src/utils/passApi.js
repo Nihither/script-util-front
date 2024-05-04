@@ -58,3 +58,36 @@ export async function createPass(passData) {
     console.log(response.status + response.statusText)
   }
 }
+
+export async function updatePass(passId, passData) {
+
+  const url = new URL(`${config.API_HOST}/passwords/${passId}`);
+
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(passData)
+  })
+
+  if (response.status === 200) {
+    return response;
+  } else {
+    console.log(response.status + response.statusText);
+  }
+}
+
+export async function delatePass(passId) {
+  const url = new URL(`${config.API_HOST}/passwords/${passId}`);
+
+  const response = await fetch(url, {
+    method: "DELETE"
+  })
+
+  if (response.status === 200) {
+    return response;
+  } else {
+    console.log(response.status + response.statusText)
+  }
+}

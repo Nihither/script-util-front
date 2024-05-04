@@ -1,10 +1,7 @@
-import config from '../../config.json';
-
-import { Component } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useActionData, useLoaderData } from 'react-router-dom';
 
 import PassForm from '../../forms/PassForm';
-import { getPassById } from '../../utils/passApi';
+import { getPassById, updatePass } from '../../utils/passApi';
 
 
 export async function loader({params}) {
@@ -12,12 +9,25 @@ export async function loader({params}) {
   return(passObj)
 }
 
+export async function action({request, params}) {
+  const formData = await request.formData();
+  const passObj = Object.fromEntries(formData);
+  const response = await updatePass(params.passId, passObj)
+  return response
+}
+
 export default function UpdatePass() {
 
   const passObj = useLoaderData();
-  console.log(passObj);
+  const actionData = useActionData();
 
-  return(
-    <PassForm passObj={passObj} />
-  )
+  if (actionData) {
+    return(
+      <p>{actionData}</p>
+    )
+  } else {
+    return(
+      <PassForm passObj={passObj} />
+    )
+  }
 }

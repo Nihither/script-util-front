@@ -5,7 +5,7 @@ import ErrorPage from "./error-page";
 import PassMenu from "./routes/passwords/PassMenu";
 import PassList, {loader as passListLoader} from "./routes/passwords/PassList";
 import CreatePass, {action as createPassAction} from "./routes/passwords/CreatePass";
-import UpdatePass, {loader as updatePassLoader} from "./routes/passwords/UpdatePass";
+import UpdatePass, {loader as updatePassLoader, action as updatePassAction} from "./routes/passwords/UpdatePass";
 import CertMenu from "./routes/certs/CertMenu";
 
 
@@ -35,6 +35,7 @@ export default function App() {
               path: ":passId/edit",
               element: <UpdatePass />,
               loader: updatePassLoader,
+              action: updatePassAction,
               errorElement: <ErrorPage />
             }
           ]
