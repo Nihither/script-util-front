@@ -73,6 +73,12 @@ a {
   border-width: 0;
 }
 
+.pass-options-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
 #root {
   display: flex;
   height: 100%;

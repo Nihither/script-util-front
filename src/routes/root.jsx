@@ -1,8 +1,10 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom';
 
-import PassGen from './passwords/PassGen'
+import PassGen from './passwords/PassGen';
+
 
 export default function Root() {
+  
   return(
     <>
       <div id="sidebar">

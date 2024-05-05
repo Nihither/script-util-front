@@ -2,10 +2,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
-import PassMenu from "./routes/passwords/PassMenu";
-import PassList, {loader as passListLoader} from "./routes/passwords/PassList";
+import PassMenu, {loader as passMenuLoader} from "./routes/passwords/PassMenu";
 import CreatePass, {action as createPassAction} from "./routes/passwords/CreatePass";
 import UpdatePass, {loader as updatePassLoader, action as updatePassAction} from "./routes/passwords/UpdatePass";
+import {action as deletePassAction} from "./routes/passwords/DeletePass";
 import CertMenu from "./routes/certs/CertMenu";
 
 
@@ -20,12 +20,8 @@ export default function App() {
         {
           path: "passwords",
           element: <PassMenu />,
+          loader: passMenuLoader,
           children: [
-            {
-              path: "list",
-              element: <PassList />,
-              loader: passListLoader,
-            },
             {
               path: "add",
               element: <CreatePass />,
@@ -37,6 +33,10 @@ export default function App() {
               loader: updatePassLoader,
               action: updatePassAction,
               errorElement: <ErrorPage />
+            },
+            {
+              path: ":passId/delete",
+              action: deletePassAction,
             }
           ]
         },

@@ -78,7 +78,8 @@ export async function updatePass(passId, passData) {
   }
 }
 
-export async function delatePass(passId) {
+export async function deletePass(passId) {
+  
   const url = new URL(`${config.API_HOST}/passwords/${passId}`);
 
   const response = await fetch(url, {

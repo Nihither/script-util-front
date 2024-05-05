@@ -2,6 +2,7 @@ import { Component } from "react"
 
 import createRandomPass from "../../utils/randomPass";
 
+
 export default class PassGen extends Component {
 
   constructor(props) {

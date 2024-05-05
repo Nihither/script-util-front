@@ -1,56 +1,64 @@
-import { useLoaderData } from "react-router-dom";
-import { searchPass } from "../../utils/passApi";
+import { Link, Form } from "react-router-dom";
+import { HiOutlinePencilSquare as EditIcon, HiOutlineTrash as DeleteIcon } from "react-icons/hi2";
 
-export async function loader({request}) {
 
-  const url = new URL(request.url);
-  const searchString = url.searchParams.get("search");
-  
-  if (searchString) {
-    const passwords = await searchPass(searchString);
-    return {searchString, passwords}
-  } else {
-    return {searchString}
-  }
-}
+export default function PassList(props) {
 
-export default function PassList() {
-
-  const {passwords, searchString} = useLoaderData();
-  console.log(passwords);
+  const passwords = props.passwords;
+  const searchString = props.searchString;
+  const url = props.url;
 
   if (searchString) {
     if (passwords) {
       return(
         <table>
           <thead>
-            <th>Id</th>
-            <th>Group</th>
-            <th>Title</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>URL</th>
-            <th>Notes</th>
-            <th>Expiry time</th>
-            <th></th>
+            <tr>
+              <th>Id</th>
+              <th>Group</th>
+              <th>Title</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>URL</th>
+              <th>Notes</th>
+              <th>Expiry time</th>
+              <th></th>
+            </tr>
           </thead>
-          {passwords.map((pass) => (
-            <tbody>
-              <td>{pass.id}</td>
-              <td>{pass.group}</td>
-              <td>{pass.title}</td>
-              <td>{pass.username}</td>
-              <td>{pass.password}</td>
-              <td>{pass.url}</td>
-              <td>{pass.notes}</td>
-              <td>{pass.expiry_time}</td>
-              <td>
-                <span>V</span>
-                <span>E</span>
-                <span>D</span>
-              </td>
-            </tbody>
-          ))}
+          <tbody>
+            {passwords.map((pass) => (
+              <tr key={pass.id}>
+                <td>{pass.id}</td>
+                <td>{pass.group}</td>
+                <td>{pass.title}</td>
+                <td>{pass.username}</td>
+                <td>{pass.password}</td>
+                <td>{pass.url}</td>
+                <td>{pass.notes}</td>
+                <td>{pass.expiry_time}</td>
+                <td className="pass-options-icons">
+                  <button><Link to={`/passwords/${pass.id}/edit`}>
+                    <EditIcon />
+                  </Link></button>
+                  <Form method="post"
+                    action={`/passwords/${pass.id}/delete`}
+                    onSubmit={(event) => {
+                      if (
+                        !window.confirm(
+                          "Please confirm you want to delete this record."
+                        )
+                      ) {
+                        event.preventDefault();
+                      }
+                    }}
+                  >
+                    <input type="text" name="redirect-url" value={url} hidden readOnly/>
+                    <button type="submit"><DeleteIcon /></button>
+                  </Form>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       )
     } else {
