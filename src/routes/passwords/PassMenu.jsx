@@ -9,7 +9,7 @@ export async function loader({request}) {
 
   const url = new URL(request.url);
   const searchString = url.searchParams.get("search");
-  
+
   if (searchString) {
     const passwords = await searchPass(searchString);
     return {url, searchString, passwords}
@@ -27,23 +27,27 @@ export default function PassMenu() {
 
   return(
     <>
-      <div id="section-header">
-        <h2>Passwords</h2>
-        <div>
-          <Form method="GET" role="search">
-            <input type="search" role="search" id="searchString" name="search" aria-label="Search" placeholder="Search" 
-              defaultValue={searchString}
+      <nav className="navbar p-0 pb-3">
+        <div className="container-fluid d-flex align-items-center">
+          <span className="navbar-brand fs-3 me-auto">Пароли</span>
+          <form className="d-flex" role="search">
+            <input className="form-control"
+                   type="search"
+                   role="search"
+                   id="searchString"
+                   name="search"
+                   aria-label="Search"
+                   placeholder="Search"
+                   defaultValue={searchString}
             />
-            <div id="search-spnner" aria-hidden hidden={true} />
-            <div className="sr-only" aria-live="polite" />
-          </Form>
-          <Link to={`add`}>
-            <button>New</button>
+          </form>
+          <Link to={`add`} className="ps-2">
+            <button className="btn btn-primary">New</button>
           </Link>
         </div>
-      </div>
+      </nav>
       <div id="pass-detail">
-        {searchString ? <PassList passwords={passwords} searchString={searchString} url={url} /> : <Outlet />}
+        {searchString ? <PassList passwords={passwords} searchString={searchString} url={url}/> : <Outlet/>}
       </div>
     </>
   )
