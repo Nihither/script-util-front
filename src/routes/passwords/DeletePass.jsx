@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 
-import { deletePass } from "../../utils/passApi";
+import { deletePass } from "../../api/passApi";
 
 
 export async function action({request, params}) {

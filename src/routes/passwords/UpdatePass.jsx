@@ -1,7 +1,7 @@
 import { useActionData, useLoaderData } from 'react-router-dom';
 
 import PassForm from '../../forms/PassForm';
-import { getPassById, updatePass } from '../../utils/passApi';
+import { getPassById, updatePass } from '../../api/passApi';
 
 
 export async function loader({params}) {

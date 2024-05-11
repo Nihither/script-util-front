@@ -1,7 +1,7 @@
 import { useActionData, Link } from "react-router-dom";
 
 import PassForm from "../../forms/PassForm"
-import { createPass } from "../../utils/passApi"
+import { createPass } from "../../api/passApi"
 
 
 export async function action({request}) {

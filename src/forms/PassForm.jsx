@@ -6,7 +6,7 @@ export default function PassForm(props) {
   const password = props.passObj;
 
   return(
-    <Form method="post" id="password-form">
+    <Form method="post" className="form">
       <label>
         <span>Group</span>
         <input 

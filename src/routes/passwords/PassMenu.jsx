@@ -1,7 +1,7 @@
 import { Form, Link, Outlet, useLoaderData } from "react-router-dom"
 import { useEffect } from "react";
 
-import { searchPass } from "../../utils/passApi";
+import { searchPass } from "../../api/passApi";
 import PassList from '../passwords/PassList';
 
 
