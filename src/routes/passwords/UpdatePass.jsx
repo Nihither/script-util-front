@@ -1,7 +1,7 @@
-import { useActionData, useLoaderData } from 'react-router-dom';
+import {useActionData, useLoaderData} from 'react-router-dom';
 
 import PassForm from '../../forms/PassForm';
-import { getPassById, updatePass } from '../../api/passApi';
+import {getPassById, updatePass} from '../../api/passApi';
 
 
 export async function loader({params}) {
@@ -11,11 +11,10 @@ export async function loader({params}) {
 }
 
 export async function action({request, params}) {
-  
+
   const formData = await request.formData();
   const passObj = Object.fromEntries(formData);
-  const response = await updatePass(params.passId, passObj)
-  return response
+  return await updatePass(params.passId, passObj)
 }
 
 export default function UpdatePass() {
